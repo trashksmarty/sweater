@@ -1,0 +1,27 @@
+<div th:replace="parts/head" />
+
+<div class="form-group row">
+    <h3 class="mx-3 my-3 col-1" th:text="${userChannel.username}" />
+    <div class="my-3 mx-3 col-9" th:if="${!isCurrentUser}">
+        <div th:if="${isSubscriber}">
+            <a class="btn btn-info" th:href="@{/user/unsubscribe/{id}(id=${userChannel.id})}">Unsubscribe</a>
+        </div>
+        <div th:unless="${isSubscriber}">
+            <a class="btn btn-info" th:href="@{/user/subscribe/{id}(id=${userChannel.id})}">Subscribe</a>
+        </div>
+    </div>
+</div>
+
+<div th:replace="parts/subslist" />
+
+<!-- Edit Messages -->
+<div th:if="${isCurrentUser}">
+    <a class="btn btn-primary mb-2" data-toggle="collapse" href="#collapseNewMessage" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Message edit
+    </a>
+    <div th:replace="parts/editmessages" />
+</div>
+
+<div th:replace="parts/showmessages" />
+
+<div th:replace="parts/foot" />

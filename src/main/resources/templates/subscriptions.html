@@ -1,0 +1,11 @@
+<div th:replace="parts/head" />
+
+<h3 class="mx-3 my-3" th:text="${userChannel.username}" />
+<div th:text="${type}"></div>
+<ul class="list-group">
+    <li class="list-group-item" th:each="user : ${users}" >
+        <a th:href="@{/user-messages/{id}(id=${user.id})}" th:text="${user.username}" />
+    </li>
+</ul>
+  
+<div th:replace="parts/foot" />

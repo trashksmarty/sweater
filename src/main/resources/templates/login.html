@@ -1,0 +1,15 @@
+<div th:replace="parts/head" />
+    <h5>Login</h5>
+    
+    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        Invalid username and password.
+    </div>
+    
+    <div th:if="${param.logout}" class="alert alert-dark" role="alert">
+        You have been logged out.
+    </div>
+    
+    <form th:replace="parts/logform :: #logform"></form>
+    
+    <a href="/registration">Registration new user</a>
+<div th:replace="parts/foot" />

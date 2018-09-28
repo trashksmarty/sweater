@@ -1,0 +1,19 @@
+.bg-light {
+    background-color: #b7ffd6 !important;
+}
+.not-dicoration-link, .a, .a:hover {
+    text-decoration: none !important;
+    color: black !important;
+}
+.link-in-button, .a, .a:hover {
+    text-decoration: none !important;
+    color: white !important;
+}
+hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+my-badge, .badge {
+    font-size: 100% !important;
+}

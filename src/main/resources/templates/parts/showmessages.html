@@ -1,0 +1,28 @@
+<div class="card-columns">
+    <div th:each="message : ${messages}">
+        <div class="card my-3" style="width: 18rem;">
+            <div th:if="${message.filename}">
+                <img class="card-img-top" th:src="@{/img/{message}(message=${message.filename})}" th:alt="${message.filename}" >
+            </div>
+            <div class="m-2">
+                <span th:utext="${message.text}" />
+                <hr class="norm-hr">
+                <div class="text-nowrap bd-highlight" style="width: 8rem;">
+                    <l th:text="'#'"/>
+                    <a class="not-dicoration-link badge badge-light" th:text="${message.tag}" th:href="@{'/main?filter='+${message.tag}}" />
+                </div>
+            </div>
+            <div class="card-footer text-muted modal-header my-badge">
+                <div>
+                    <strong>
+                        <l th:utext="'Author: '" />
+                        <a class="not-dicoration-link badge badge-light" th:utext="${message.authorName}" th:href="@{/user-messages/{id}(id=${message.author.id})}" />
+                    </strong>
+                </div>
+                <div th:if="${userId == message.author.id}" class="text-right">
+                    <a class="not-dicoration-link" th:utext="'&#9998;'" th:href="@{/user-messages/{id}?message={messageId}(id=${userId}, messageId=${message.id})}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

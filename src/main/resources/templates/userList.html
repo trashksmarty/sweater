@@ -1,0 +1,21 @@
+<div th:replace="parts/head" />
+<p>List of users</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr th:each="user : ${users}">
+            <td th:utext="${user.username}"></td>
+            <td th:each="role,iStat : ${user.roles}" th:utext="${role}+(${iStat.last} ? '' : ', ')"></td>
+            <td><a th:href="@{'/user/'+${user.id}}">edit</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<div th:replace="parts/foot" />
