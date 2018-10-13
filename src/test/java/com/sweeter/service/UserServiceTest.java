@@ -3,9 +3,7 @@ package com.sweeter.service;
 import com.sweeter.domain.Role;
 import com.sweeter.domain.User;
 import com.sweeter.repos.UserRepo;
-import java.util.Collections;
 import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -15,6 +13,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Collections;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,10 +39,10 @@ public class UserServiceTest {
 
         boolean isUserCreatad = userService.addUser(user);
 
-        Assert.assertTrue(isUserCreatad);
-        Assert.assertTrue(CoreMatchers.is(user.getRoles()).matches(Collections.singleton(Role.USER)));
+        assertTrue(isUserCreatad);
+        assertTrue(CoreMatchers.is(user.getRoles()).matches(Collections.singleton(Role.USER)));
 
-        Mockito.verify(userRepo, Mockito.times(1)).save(user);
+        verify(userRepo, Mockito.times(1)).save(user);
     }
 
     @Test
@@ -52,8 +56,8 @@ public class UserServiceTest {
 
         boolean isUserCreatad = userService.addUser(user);
 
-        Assert.assertFalse(isUserCreatad);
+        assertFalse(isUserCreatad);
         
-        Mockito.verify(userRepo, Mockito.times(0)).save(ArgumentMatchers.any(User.class));
+        verify(userRepo, Mockito.times(0)).save(ArgumentMatchers.any(User.class));
     }
 }
